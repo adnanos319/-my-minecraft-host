@@ -3,87 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مستضيف ماين كرافت المجاني</title>
+    <title>لوحة التحكم بسيرفر ماين كرافت الخاص بي</title>
     <style>
-        /* تصميم الموقع بالكامل (CSS) */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            text-align: center;
-            padding: 50px 20px;
-            margin: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #2a2a2a;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-        }
-        h1 { color: #4caf50; margin-bottom: 30px; }
-        p { color: #cccccc; font-size: 18px; }
-        .btn {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s ease;
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-        }
-        .btn:hover { background-color: #45a049; transform: scale(1.05); }
-        .btn:disabled { background-color: #555; cursor: not-allowed; transform: none; }
-        #status {
-            margin-top: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffeb3b;
-        }
+        body { font-family: sans-serif; background-color: #1a1a2e; color: white; text-align: center; padding: 50px; }
+        .container { background-color: #161625; padding: 30px; border-radius: 10px; display: inline-block; box-shadow: 0px 4px 10px rgba(0,0,0,0.5); width: 80%; max-width: 500px; }
+        h1 { color: #4e9f3d; }
+        button { background-color: #4e9f3d; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 20px; width: 100%; }
+        button:hover { background-color: #3e8e2f; }
+        .status-box { margin-top: 25px; padding: 15px; border-radius: 5px; background-color: #22223b; font-size: 18px; }
+        #status { color: #ffdd59; font-weight: bold; }
+        #ip-address { color: #00d2d3; display: none; margin-top: 10px; font-family: monospace; font-size: 20px; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>اصنع سيرفر ماين كرافت مجاني 🚀</h1>
-        <p>اضغط على الزر بالأسفل لإنشاء وتشغيل سيرفرك فوراً بدون تعقيد.</p>
+        <h1>موقعي الخاص لإنشاء السيرفرات</h1>
+        <p>تحكم بسيرفر ماين كرافت الخاص بك وافتحه الآن مجاناً.</p>
         
-        <!-- الزر المخصص للتشغيل -->
-        <button id="serverBtn" class="btn" onclick="startServer()">اضغط هنا لتشغيل السيرفر</button>
+        <button onclick="startMyServer()">▶ تشغيل السيرفر (Start)</button>
         
-        <!-- مكان ظهور النتيجة -->
-        <div id="status">السيرفر مغلق حالياً ❌</div>
+        <div class="status-box">
+            حالة السيرفر الحالي: <span id="status">متوقف 🔴</span>
+            <div id="ip-address">جاري تجهيز الآيبـي...</div>
+        </div>
     </div>
 
     <script>
-    function startServer() {
-        const btn = document.getElementById('serverBtn');
-        const statusDiv = document.getElementById('status');
-        
-        // 1. تغيير شكل الزر والكتابة لكي ينتظر اللاعب
-        btn.disabled = true;
-        statusDiv.innerText = "جاري إنشاء سيرفر ماين كرافت جديد... ⏳";
-        statusDiv.style.color = "#ffeb3b";
-
-        // 2. توليد رقم عشوائي ليكون الآي بي مختلف لكل شخص (مثل سيرفرات الأونلاين)
-        const randomPort = Math.floor(Math.random() * (29999 - 25000 + 1)) + 25000;
-        const serverIP = "mc.hostfree" + Math.floor(Math.random() * 100) + ".net:" + randomPort;
-
-        // 3. انتظر 4 ثوانٍ (كأن الموقع يصنع السيرفر فعلياً) ثم اعطِه النتيجة
-        setTimeout(() => {
-            statusDiv.innerHTML = "<b>✅ تم تشغيل السيرفر بنجاح!</b><br><br>" +
-                                  "🌐 إصدار اللعبة: <b>1.21 (PaperMC)</b><br>" +
-                                  "🎮 آي بي الدخول (IP): <span style='color:#10b981; font-size:22px;'>" + serverIP + "</span><br><br>" +
-                                  "⚠️ ملاحظة: السيرفر مجاني وينطفئ تلقائياً إذا كان فارغاً.";
-            statusDiv.style.color = "#4caf50";
-            btn.disabled = false;
-        }, 4000); // 4000 تعني 4 ثوانٍ
-    }
-</script>
-
+        function startMyServer() {
+            document.getElementById('status').innerText = "جاري تشغيل السيرفر... 🔄";
+            document.getElementById('status').style.color = "#ffdd59";
+            
+            // محاكاة الاتصال بنظام تشغيل السيرفرات السحابي المجاني
+            setTimeout(() => {
+                document.getElementById('status').innerText = "يعمل الآن بنجاح 🟢";
+                document.getElementById('status').style.color = "#4e9f3d";
+                
+                // هنا سيظهر الآيبي الافتراضي للسيرفر بعد التشغيل
+                var ipBox = document.getElementById('ip-address');
+                ipBox.style.display = "block";
+                ipBox.innerText = "IP: myserver.freegame.host:25565";
+            }, 5000); // السيرفر يفتح خلال 5 ثوانٍ
+        }
+    </script>
 </body>
 </html>
